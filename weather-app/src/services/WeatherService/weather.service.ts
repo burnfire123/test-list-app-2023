@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { WeatherCondition, WeatherInfo } from "../../WeatherInfo";
+import axios from "axios";
 
 export interface WeatherService {
 	getCurrentWeather(city: string): Promise<WeatherInfo>;
@@ -7,18 +8,20 @@ export interface WeatherService {
 
 export class WeatherServiceImpl implements WeatherService {
 	async getCurrentWeather(city: string): Promise<WeatherInfo> {
-		if (city !== "Mock") {
-			throw new Error("Not found!");
-		}
+		const { data: { current: weatherInfo }} = await axios.get(`http://api.weatherapi.com/v1/current.json?q=${city}`, {
+			headers: {
+				key: import.meta.env.VITE_WEATHER_API_KEY
+			}
+		});
 		return {
-			city,
-			condition: WeatherCondition.CLEAR,
-			description: "Clear sky",
-			tempCelsius: 20,
-			tempFahrenheit: 90,
-			windSpeed: 20,
-			lastUpdated: new Date().toDateString()
-		};
+					city,
+					condition: WeatherCondition.CLEAR,
+					description: weatherInfo.condition.text,
+					tempCelsius: weatherInfo.temp_c,
+					tempFahrenheit: weatherInfo.temp_f,
+					windSpeed: weatherInfo.wind_kph,
+					lastUpdated: weatherInfo.last_updated
+				};
 	}
 }
 
