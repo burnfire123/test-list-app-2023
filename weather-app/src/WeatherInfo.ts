@@ -2,6 +2,8 @@ export enum WeatherCondition {
 	CLEAR
 }
 
+export type TemperatureUnit = "celsius" | "fahrenheit";
+
 export type WeatherInfo = {
 	city: string,
 	tempCelsius: number,
