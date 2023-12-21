@@ -1,6 +1,6 @@
 import './App.css'
 import { CitySelect } from './components/CitySelect'
-import { Box, Paper, Typography, Grid } from '@mui/material'
+import { Paper, Typography, Grid } from '@mui/material'
 
 function App() {
   return <Grid container spacing={5} marginLeft="3px" marginTop="3px">
