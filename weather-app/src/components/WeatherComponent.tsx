@@ -7,7 +7,7 @@ export interface IProps {
 	weatherInfo: WeatherInfo,
 }
 
-export function WeatherComponent({weatherInfo}: IProps) {
+export function WeatherComponent({ weatherInfo }: IProps) {
 	return <Grid container direction="column" spacing={1}>
 		<Grid item>
 			<Typography>
