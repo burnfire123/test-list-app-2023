@@ -8,6 +8,14 @@ export interface WeatherService {
 
 export class WeatherServiceImpl implements WeatherService {
 	async getCurrentWeather(city: string): Promise<WeatherInfo> {
+		const statusCodeToErrorMessage = {
+			400: "Provided city isn't valid",
+			401: "API key wasn't provided",
+			403: "There was an API error",
+		}
+		if (!city) {
+			throw new Error(statusCodeToErrorMessage[400]);
+		}
 		try {
 			const { data: { current: weatherInfo }} = await axios.get(`http://api.weatherapi.com/v1/current.json?q=${city}`, {
 				headers: {
@@ -26,11 +34,6 @@ export class WeatherServiceImpl implements WeatherService {
 		}
 		catch (err) {
 			const { response: { status } } = err;
-			const statusCodeToErrorMessage = {
-				400: "Provided city isn't valid",
-				401: "API key wasn't provided",
-				403: "There was an API error",
-			}
 			throw new Error(statusCodeToErrorMessage[status]);
 		}
 	}
