@@ -26,7 +26,7 @@ export function TemperatureComponent(props: IProps) {
 	return <Grid container alignItems={"center"} spacing={3}>
 		<Grid item>
 			<Typography>
-				{`Temperature: ${getTemperature()}°${unit.toUpperCase().charAt(0)}`}
+				{`🌡️Temperature: ${getTemperature()}°${unit.toUpperCase().charAt(0)}`}
 			</Typography>
 		</Grid>
 		<Grid item>

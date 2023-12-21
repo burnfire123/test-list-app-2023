@@ -11,4 +11,5 @@ export type WeatherInfo = {
 	description: string,
 	windSpeed: number, // in km/h
 	condition: WeatherCondition,
+	lastUpdated: string,
 };

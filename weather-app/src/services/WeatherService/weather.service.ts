@@ -16,7 +16,8 @@ export class WeatherServiceImpl implements WeatherService {
 			description: "Clear sky",
 			tempCelsius: 20,
 			tempFahrenheit: 90,
-			windSpeed: 20
+			windSpeed: 20,
+			lastUpdated: new Date().toDateString()
 		};
 	}
 }

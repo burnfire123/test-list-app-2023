@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import { WeatherInfo } from "../WeatherInfo";
 import { TemperatureComponent } from "./TemperatureComponent";
+import { WeatherIcon } from "./WeatherIcon";
 
 export interface IProps {
 	weatherInfo: WeatherInfo,
@@ -14,17 +15,25 @@ export function WeatherComponent({weatherInfo}: IProps) {
 			</Typography>
 		</Grid>
 		<Grid item>
+			<Typography>
+				Last updated: {weatherInfo.lastUpdated}
+			</Typography>
+		</Grid>
+		<Grid item>
 			<TemperatureComponent temperature={weatherInfo}/>
 		</Grid>
 		<Grid item>
 			<Typography>
-				Description: {weatherInfo.description}
+				💨 Wind speed: {weatherInfo.windSpeed} km/h
 			</Typography>
 		</Grid>
 		<Grid item>
 			<Typography>
-				Wind speed: {weatherInfo.windSpeed} km/h
+				{weatherInfo.description}
 			</Typography>
+		</Grid>
+		<Grid item>
+			<WeatherIcon condition={weatherInfo.condition} />
 		</Grid>
 	</Grid>
 }
