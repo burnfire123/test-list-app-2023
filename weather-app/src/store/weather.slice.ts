@@ -11,7 +11,7 @@ export const weatherSlice = createSlice({
 		builder.addCase(getCurrentWeatherThunk.fulfilled, (state, action) => {
 			state.current = action.payload!;
 		}).addCase(getCurrentWeatherThunk.rejected, (state, action) => {
-			alert("Error!");
+			alert(action.error.message);
 		});
 	},
 });
