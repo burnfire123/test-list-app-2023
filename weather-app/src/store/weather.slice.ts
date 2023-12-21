@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCurrentWeatherThunk } from "../services/WeatherService/weather.service";
 
 export const weatherSlice = createSlice({
 	initialState: {
-		city: ""
+		current: null,
 	},
 	name: "weather",
-	reducers: {
-		setCity: (state, { payload }: { payload: string }) => {
-			state.city = payload;
-		}
-	}
+	reducers: {},
+	extraReducers(builder) {
+		builder.addCase(getCurrentWeatherThunk.fulfilled, (state, action) => {
+			state.current = action.payload!;
+		});
+	},
 });
