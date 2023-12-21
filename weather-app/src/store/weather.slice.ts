@@ -10,6 +10,8 @@ export const weatherSlice = createSlice({
 	extraReducers(builder) {
 		builder.addCase(getCurrentWeatherThunk.fulfilled, (state, action) => {
 			state.current = action.payload!;
+		}).addCase(getCurrentWeatherThunk.rejected, (state, action) => {
+			alert("Error!");
 		});
 	},
 });

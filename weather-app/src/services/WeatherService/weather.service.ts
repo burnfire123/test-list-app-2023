@@ -25,6 +25,5 @@ export class WeatherServiceImpl implements WeatherService {
 export const weatherService = new WeatherServiceImpl();
 
 export const getCurrentWeatherThunk = createAsyncThunk("weather/get", async (city: string, thunkAPI) => {
-	const result = await weatherService.getCurrentWeather(city);
-	return result;
+	return weatherService.getCurrentWeather(city);
 });
