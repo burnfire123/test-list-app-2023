@@ -15,7 +15,7 @@ export class WeatherServiceImpl implements WeatherService {
 		});
 		return {
 					city,
-					condition: WeatherCondition.CLEAR,
+					condition: weatherInfo.condition.code,
 					description: weatherInfo.condition.text,
 					tempCelsius: weatherInfo.temp_c,
 					tempFahrenheit: weatherInfo.temp_f,

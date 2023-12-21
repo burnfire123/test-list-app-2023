@@ -1,5 +1,6 @@
 export enum WeatherCondition {
-	CLEAR
+	CLEAR = 1000, PARTLY_CLOUDY = 1003, CLOUDY = 1006, OVERCAST = 1009, MIST = 1030,
+	LIGHT_RAIN = 1183, MODERATE_RAIN = 1189
 }
 
 export type TemperatureUnit = "celsius" | "fahrenheit";
