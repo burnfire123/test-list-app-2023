@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { WeatherCondition, WeatherInfo } from "../../WeatherInfo";
+import { WeatherInfo } from "../../WeatherInfo";
 import axios from "axios";
 
 export interface WeatherService {
@@ -8,7 +8,7 @@ export interface WeatherService {
 
 export class WeatherServiceImpl implements WeatherService {
 	async getCurrentWeather(city: string): Promise<WeatherInfo> {
-		const statusCodeToErrorMessage = {
+		const statusCodeToErrorMessage: { [key: number]: string } = {
 			400: "Provided city isn't valid",
 			401: "API key wasn't provided",
 			403: "There was an API error",
@@ -33,7 +33,7 @@ export class WeatherServiceImpl implements WeatherService {
 					};
 		}
 		catch (err) {
-			const { response: { status } } = err;
+			const { response: { status } } = err as { response: { status: number }};
 			throw new Error(statusCodeToErrorMessage[status]);
 		}
 	}
@@ -41,6 +41,6 @@ export class WeatherServiceImpl implements WeatherService {
 
 export const weatherService = new WeatherServiceImpl();
 
-export const getCurrentWeatherThunk = createAsyncThunk("weather/get", async (city: string, thunkAPI) => {
+export const getCurrentWeatherThunk = createAsyncThunk("weather/get", async (city: string) => {
 	return weatherService.getCurrentWeather(city);
 });

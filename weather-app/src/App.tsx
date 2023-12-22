@@ -7,7 +7,7 @@ import { AppDispatch } from './store';
 import { getCurrentWeatherThunk } from './services/WeatherService/weather.service';
 
 function App() {
-  const { current } = useSelector(state => state.weather);
+  const { current } = useSelector((state: any) => state.weather);
   const dispatch = useDispatch<AppDispatch>();
   return <Grid container spacing={5} marginLeft="3px" marginTop="3px">
       <Paper>

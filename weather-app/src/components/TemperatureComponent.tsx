@@ -9,7 +9,7 @@ export interface IProps {
 export function TemperatureComponent(props: IProps) {
 	const { temperature } = props;
 	const [unit, setUnit] = useState<TemperatureUnit>("celsius");
-	function handleSwitchToggle(event) {
+	function handleSwitchToggle(event: any) {
 		const { target: { checked } } = event;
 		let unit: TemperatureUnit = "celsius";
 		if (checked) {
